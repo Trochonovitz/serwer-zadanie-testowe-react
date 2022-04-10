@@ -71,6 +71,12 @@ app.patch("/edit/:id", (req, res) => {
   }
 });
 
+app.post("/reorganise", (req, res) => {
+  const reorganisedArray = req.body;
+  items = reorganisedArray;
+  res.status(201).send("Created a new array");
+});
+
 app.listen(3001, () => {
   console.log("Server is Running");
 });
