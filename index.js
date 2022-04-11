@@ -9,6 +9,8 @@ let categories = [
   { category: "Oprogramowanie" },
 ];
 
+const port = 3001;
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +23,8 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH");
   next();
 });
+
+app.get("/", (req, res) => res.send("hello world"));
 
 app.get("/items", (req, res) => {
   res.json(items);
@@ -77,6 +81,6 @@ app.post("/reorganise", (req, res) => {
   res.status(201).send("Created a new array");
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || port, () => {
   console.log("Server is Running");
 });
